@@ -23,6 +23,7 @@ class SinglePost extends React.Component {
       return (
         <article>
           <SmallTitle>{post.title}</SmallTitle>
+          <p>Author: {post.author}</p>
           <HtmlBox>{post.content}</HtmlBox>
         </article>
       );
@@ -33,7 +34,7 @@ class SinglePost extends React.Component {
     } else if (request.pending === false && request.success === true) {
       return <Alert variant='info'>No posts</Alert>;
     } else {
-      return <Alert variant='info'>Something went wrong!</Alert>;
+      return <Alert variant='info'>Something went wrong...</Alert>;
     }
   }
 }
@@ -43,6 +44,7 @@ SinglePost.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired
     })
   ),
