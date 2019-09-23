@@ -5,6 +5,11 @@ import Alert from '../../common/Alert/Alert';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import { withRouter } from 'react-router-dom';
+import { FacebookProvider, Comments, ShareButton } from 'react-facebook';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+import { BASE_URL } from '../../../config';
+import './SinglePost.scss';
 
 class SinglePost extends React.Component {
   componentDidMount() {
@@ -14,7 +19,7 @@ class SinglePost extends React.Component {
   }
 
   render() {
-    const { post, request } = this.props;
+    const { post, request, location } = this.props;
 
     if (
       request.pending === false &&
@@ -24,8 +29,20 @@ class SinglePost extends React.Component {
       return (
         <article>
           <SmallTitle>{post.title}</SmallTitle>
+          <FacebookProvider appId='437479826881005'>
+            <ShareButton
+              className='fb-share-button'
+              href={`${BASE_URL}${location.pathname}`}
+            >
+              <FontAwesomeIcon icon={faFacebookSquare} className='fb-icon' />
+              Share on Facebook
+            </ShareButton>
+          </FacebookProvider>
           <p>Author: {post.author}</p>
           <HtmlBox>{post.content}</HtmlBox>
+          <FacebookProvider appId='437479826881005'>
+            <Comments href={`${BASE_URL}${location.pathname}`} />
+          </FacebookProvider>
         </article>
       );
     } else if (request.pending === true || request.success === null) {
@@ -49,7 +66,8 @@ SinglePost.propTypes = {
       content: PropTypes.string.isRequired
     })
   ),
-  loadPost: PropTypes.func.isRequired
+  loadPost: PropTypes.func.isRequired,
+  resetRequest: PropTypes.func.isRequired
 };
 
 export default withRouter(props => <SinglePost {...props} />);
