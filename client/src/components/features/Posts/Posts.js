@@ -41,6 +41,17 @@ class Posts extends React.Component {
           />
         </>
       );
+    } else if (
+      request.pending === false &&
+      request.success === true &&
+      posts.length > 0 &&
+      pagination === false
+    ) {
+      return (
+        <>
+          <PostsList posts={posts} />
+        </>
+      );
     } else if (request.pending === false && request.error != null) {
       return <Alert variant='error'>{request.error}</Alert>;
     } else if (
