@@ -1,4 +1,4 @@
-DEMO ON HEROKU [here](https://blog-mernapp.herokuapp.com/).
+DEMO ON HEROKU [HERE](https://blog-mernapp.herokuapp.com/).
 
 **First use `yarn install` in main project folder**
 
