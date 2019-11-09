@@ -4,7 +4,7 @@ import { API_URL } from '../config';
 /* SELECTORS */
 export const getPosts = ({ posts }) => posts.data;
 export const getSinglePost = ({ posts }) => posts.singlePost;
-export const getPostsCounter = ({ posts }) => posts.data.length;
+export const getPostsCounter = ({ posts }) => posts.amount;
 export const getRequest = ({ posts }) => posts.request;
 export const getPages = ({ posts }) =>
   Math.ceil(posts.amount / posts.postsPerPage);
