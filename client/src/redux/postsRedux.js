@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '../config';
-
+//ki
 /* SELECTORS */
 export const getPosts = ({ posts }) => posts.data;
 export const getSinglePost = ({ posts }) => posts.singlePost;
